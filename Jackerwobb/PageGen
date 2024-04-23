@@ -1,0 +1,158 @@
+<html><head>
+<style>
+html, body {
+            background-color: #C5C5C5;
+        }
+img{
+	width:600px;
+}
+#border #info-box #info #box input[type="text"] {
+  float: left;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  height: 25px; 
+  width: 650px; 
+  outline: none;
+}
+
+#border #info-box #info #box input[type="submit"] {
+  margin-left: 500px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  height: 35px; 
+  color: #fff;
+  font-size: 20px;
+  border: 2px solid #fff;
+  border-radius: 8px 8px 8px 8px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 3px;
+  cursor: pointer;  
+}
+textarea {
+  resize: none;
+  vertical-align:middle;
+  height:24px;
+  overflow: hidden;
+  width: 1000px;
+}
+</style>
+</head>
+<body>
+Behold the tier page generator
+<select class="form-control" id="tierSelect">
+<option value="Closeted">Closeted</option><option value="Voyeur">Voyeur</option><option value="Perv">Perv</option></select>
+<!--the script looks for the image on the page using its format, so format selection is needed just to find it.-->
+<form>
+    <span>1.</span><preview id="imagePreview1"></preview>
+	<input type="file" class="form-control-file" id="fileInput" onchange="handleFileSelect(event)">
+	<label for="formatSelect1">Select image format:</label>
+	<select class="form-control" id="formatSelect1">
+	<option value="image/png">PNG</option><option value="image/jpeg">JPEG</option><option value="image/gif">GIF</option></select>
+	<label for="base64Data1">Base64-encoded data:</label>
+	<textarea id="base64Data1" disabled></textarea><br>
+</form>
+<a href="#" id="downloadLink">Download the inner html</a><input type="text" id="htmlname"><br>
+<a href="../PageCrypt/index.html" target="_blank" rel="noreferrer noopener">Open PageCrypt</a>
+<div id="exporty">
+<html><head><style>
+html, body {
+            background-color: #C5C5C5;
+        }
+img{
+	width:600px;
+}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+<header>
+    <center><h1><b>Hello Jackerwobb Subscriber! Enjoy the Content!</b></h1>
+	<p>For <ts id=tierspot>Closeted</ts> Tier</p>
+	objects in mirror are larger than they may appear<br>
+	Click on the images to download the full res png<br>
+	<a href="https://subscribestar.adult/jackerwobb">Subscribestar</a>&nbsp;
+	<a href="https://ko-fi.com/jackerwobb">Ko-Fi</a>
+	<a href="https://www.furaffinity.net/user/theskeleton">Furaffinity</a>&nbsp;
+	<a href="https://inkbunny.net/Jackerwobb">Inkbunny</a>&nbsp;
+	<a href="https://twitter.com/MadJackEPF">Twitter</a>&nbsp;
+	<a href="https://itaku.ee/profile/jackerwobb">Itaku</a>
+	<br>
+	<br></center>
+</header>
+<center>
+<div id="payload">
+</div>
+<p>Jackerwobb's Hacky-Ass Content Page v1.0</p>
+</center>
+<!--YOU... SHALL NOT... PASS!!!!!!-->
+</body>
+</html>
+<!--FLY, YOU FOOLS-->
+<!--GANDAAAAAAAAAAAAAAAAAAAAAAALFFFFFF-->
+</div>
+<script>//page export
+function downloadInnerHtml(filename, elId, mimeType) {
+    var elHtml = document.getElementById(elId).innerHTML;
+    var link = document.createElement('a');
+    mimeType = mimeType || 'text/plain';
+    link.setAttribute('download', filename);
+    link.setAttribute('href', 'data:' + mimeType + ';charset=utf-8,' + encodeURIComponent(elHtml));
+    link.click(); 
+}
+$('#downloadLink').click(function(){
+	const today = new Date();
+	const year = today.getFullYear();
+	const month = today.toLocaleString('default', { month: 'long' });
+	var htmlname = document.getElementById("htmlname").value;
+	var tierforname = document.getElementById("tierSelect").value;
+	var fileName = '' + year + ' ' + month + ' ' + htmlname + ' ' + tierforname + '.html'; // You can use the .txt extension if you want
+    downloadInnerHtml(fileName, 'exporty','text/html');
+});
+</script>
+<script>//Pipiru Piru Piru Pipiru Pi!!!!! Converts image to base64 data uri and populates Arrays. Also adds entry to the page to be generated.
+const imgArray = [];
+const imgNameArray = [];
+$('select').change(function(){
+    
+    $('#tierspot').html($(this).val());
+});
+function handleFileSelect(event) {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.onload = function(event) {
+        const img = document.createElement("img");
+        const format = document.getElementById("formatSelect" + (imgNameArray.length+1)).value;
+        img.src = "data:" + format + ";base64," + event.target.result.split(",")[1];
+        img.classList.add("img-fluid" + (imgNameArray.length+1));  // Bootstrap class for responsive images
+		img.style.cssText = 'vertical-align:middle; width:100px;';
+        document.getElementById("imagePreview" + (imgNameArray.length+1)).innerHTML = "";
+        document.getElementById("imagePreview" + (imgNameArray.length+1)).appendChild(img);
+        document.getElementById("base64Data" + (imgNameArray.length+1)).value = event.target.result;
+		imgArray.push(event.target.result);
+		reader.fileName = file.name;
+		imgNameArray.push(file.name);
+		var entry = $("<a href='"+imgArray[imgArray.length-1]+"' download='"+imgNameArray[imgNameArray.length-1]+"'><img src='"+imgArray[imgArray.length-1]+"'></a>")
+		$('#payload').append(entry);
+    };
+    reader.readAsDataURL(file);
+        var allGood=true;
+        $(fileInput).each(function() {
+            if ($(this).val() =="") {
+                allGood=false;
+                return false;
+            }
+        });
+        if (allGood) {
+			$("<span>" + (imgNameArray.length+2) + ".</span><preview id='imagePreview" + (imgNameArray.length+2) + "'></preview>" +
+			"<input type='file' class='form-control-file' id='fileInput' onchange='handleFileSelect(event)'>" +
+			"<label for='formatSelect" + (imgNameArray.length+2) + "'>Select image format:</label>" +
+			"<select class='form-control' id='formatSelect" + (imgNameArray.length+2) + "'>" +
+			"<option value='image/png'>PNG</option><option value='image/jpeg'>JPEG</option><option value='image/gif'>GIF</option></select>" +
+			"<label for='base64Data" + (imgNameArray.length+2) + "'>Base64-encoded data:</label>" +
+			"<textarea id='base64Data" + (imgNameArray.length+2) + "' disabled></textarea><br>").appendTo("form");
+        }
+}
+</script>
+</body>
+</html>
