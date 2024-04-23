@@ -107,7 +107,7 @@ $('#downloadLink').click(function(){
 	const month = today.toLocaleString('default', { month: 'long' });
 	var htmlname = document.getElementById("htmlname").value;
 	var tierforname = document.getElementById("tierSelect").value;
-	var fileName = '' + year + ' ' + month + ' ' + htmlname + ' ' + tierforname + '.html'; // You can use the .txt extension if you want
+	var fileName = '' + year + ' ' + month + ' ' + htmlname + ' ' + tierforname + '.html';
     downloadInnerHtml(fileName, 'exporty','text/html');
 });
 </script>
